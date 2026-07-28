@@ -1,0 +1,131 @@
+:root {
+    --bg-color: var(--tg-theme-bg-color, #ffffff);
+    --text-color: var(--tg-theme-text-color, #000000);
+    --hint-color: var(--tg-theme-hint-color, #999999);
+    --button-color: var(--tg-theme-button-color, #2481cc);
+    --button-text-color: var(--tg-theme-button-text-color, #ffffff);
+    --secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
+}
+
+@font-face {
+    font-family: 'Benzin';
+    src: url('fonts/Benzin-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Benzin';
+    src: url('fonts/Benzin-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Benzin';
+    src: url('fonts/Benzin-Semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Benzin';
+    src: url('fonts/Benzin-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Benzin';
+    src: url('fonts/Benzin-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Benzin', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.app-content {
+    display: none;
+}
+
+.desktop-warning {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.w1 {
+    color: #1C1E26;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+}
+
+.w2 {
+    color: #70778A;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 500px;
+}
+
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    .desktop-warning {
+        display: none;
+    }
+    .app-content {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .app-card {
+        background-color: var(--secondary-bg-color);
+        border-radius: 12px;
+        padding: 16px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .desktop-warning {
+        display: none;
+    }
+    .app-content {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+    }
+    .app-card {
+        background-color: var(--secondary-bg-color);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 13px;
+    }
+}
