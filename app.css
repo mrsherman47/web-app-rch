@@ -1,10 +1,30 @@
 :root {
-    --bg-color: var(--tg-theme-bg-color, #ffffff);
-    --text-color: var(--tg-theme-text-color, #000000);
-    --hint-color: var(--tg-theme-hint-color, #999999);
-    --button-color: var(--tg-theme-button-color, #2481cc);
-    --button-text-color: var(--tg-theme-button-text-color, #ffffff);
-    --secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
+    --bg-color: var(--tg-theme-bg-color, #F7F8FC);
+    --text-color: var(--tg-theme-text-color, #1C1E26);
+    --hint-color: var(--tg-theme-hint-color, #70778A);
+
+    --button-color: var(--tg-theme-button-color, #6A3DFF);
+    --button-text-color: var(--tg-theme-button-text-color, #FFFFFF);
+
+    --secondary-bg-color: var(
+        --tg-theme-secondary-bg-color,
+        #FFFFFF
+    );
+
+    --primary: #6A3DFF;
+    --accent: #FF3D8D;
+    --blue: #33B7FF;
+
+    --card-bg: #FFFFFF;
+    --card-secondary: #F3F4F8;
+    --card-purple: #EDE7FF;
+    --card-blue: #EEF8FF;
+    --card-pink: #FFF0F7;
+
+    --border: #E8EAF2;
+
+    --radius: 18px;
+    --spacing: 16px;
 }
 
 @font-face {
@@ -47,85 +67,89 @@
     font-display: swap;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
 body {
+    margin: 0;
+    min-height: 100dvh;
     font-family: 'Benzin', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
 
-.app-content {
-    display: none;
+    padding:
+        env(safe-area-inset-top)
+        0
+        env(safe-area-inset-bottom)
+        0;
 }
 
 .desktop-warning {
-    display: block;
-    position: relative;
+    display: none;
+}
+
+.app-content {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 100vh;
+    min-height: 100dvh;
+    padding: 16px;
 }
 
-.w1 {
-    color: #1C1E26;
-    font-weight: 700;
-    font-size: 18px;
-    text-align: center;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
+.app-card {
+    width: 100%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    font-size: 15px;
+    line-height: 1.45;
 }
 
-.w2 {
-    color: #70778A;
-    font-weight: 400;
-    font-size: 14px;
-    text-align: center;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-width: 500px;
+.navigation {
+    background-color: var(--card-bg);
 }
 
-@media screen and (min-width: 361px) and (max-width: 480px) {
-    .desktop-warning {
-        display: none;
-    }
+@media screen and (max-width: 359px) {
+
     .app-content {
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
+        padding: 12px;
     }
 
     .app-card {
-        background-color: var(--secondary-bg-color);
-        border-radius: 12px;
-        padding: 16px;
+        padding: 14px;
+        border-radius: 16px;
+        font-size: 14px;
+    }
+}
+
+/* На экранах от 768px и шире (компьютеры) показываем заглушку */
+@media screen and (min-width: 768px) {
+    .desktop-warning {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-height: 100dvh;
+        padding: 20px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        gap: 10px;
+    }
+
+    .desktop-warning .w1 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .desktop-warning .w2 {
         font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 360px) {
-    .desktop-warning {
-        display: none;
-    }
-    .app-content {
-        display: flex;
-        flex-direction: column;
-        padding: 8px;
-    }
-    .app-card {
-        background-color: var(--secondary-bg-color);
-        border-radius: 8px;
-        padding: 10px;
-        font-size: 13px;
+        color: var(--hint-color);
     }
 }
