@@ -1,151 +1,116 @@
 :root {
-    --bg-color: var(--tg-theme-bg-color, #F7F8FC);
-    --text-color: var(--tg-theme-text-color, #1C1E26);
-    --hint-color: var(--tg-theme-hint-color, #70778A);
+            --button-color: #2481cc;
+            --bg-color: #f4f4f5;
+            --card-bg: #ffffff;
+            --text-color: #1c1e26;
+            --hint-color: #70778a;
+        }
 
-    --button-color: var(--tg-theme-button-color, #6A3DFF);
-    --button-text-color: var(--tg-theme-button-text-color, #FFFFFF);
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 16px;
+        }
 
-    --secondary-bg-color: var(
-        --tg-theme-secondary-bg-color,
-        #FFFFFF
-    );
-    --primary: #6A3DFF;
-    --accent: #FF3D8D;
-    --blue: #33B7FF;
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
-    --card-bg: #FFFFFF;
-    --card-secondary: #F3F4F8;
-    --card-purple: #EDE7FF;
-    --card-blue: #EEF8FF;
-    --card-pink: #FFF0F7;
+        /* Шапка */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .logo-block { font-weight: 800; font-size: 16px; line-height: 1.2; }
+        .lang-switcher { display: flex; gap: 6px; }
+        .lang-btn { background: none; border: 1px solid #ddd; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; }
+        .lang-btn.active { background: var(--button-color); color: white; border-color: var(--button-color); }
 
-    --border: #E8EAF2;
+        /* Карточки / Секции */
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
 
-    /* Размеры */
-    --radius: 18px;
-    --spacing: 16px;
-}
+        .hero-banner {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            border-radius: 12px;
+            padding: 24px;
+        }
 
-@font-face {
-    font-family: 'Benzin';
-    src: url('fonts/Benzin-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
+        .primary-btn {
+            background: var(--button-color);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 12px;
+            text-align: center;
+        }
 
-@font-face {
-    font-family: 'Benzin';
-    src: url('fonts/Benzin-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
+        /* Расписание */
+        .schedule-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .schedule-item:last-child { border-bottom: none; }
+        .event-title { font-weight: 700; font-size: 15px; }
+        .event-date { color: var(--hint-color); font-size: 13px; margin-top: 2px; }
 
-@font-face {
-    font-family: 'Benzin';
-    src: url('fonts/Benzin-Semibold.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
+        /* Гармошка (Первый визит) */
+        .accordion-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 12px 16px;
+            background: #fafafa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .accordion-body {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--hint-color);
+            background: white;
+            border-top: 1px solid #eee;
+        }
 
-@font-face {
-    font-family: 'Benzin';
-    src: url('fonts/Benzin-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
+        /* Навигация в футере */
+        .nav-list { list-style: none; padding: 0; margin: 10px 0; }
+        .nav-list li { margin: 6px 0; color: var(--hint-color); font-size: 14px; cursor: pointer; }
+        .nav-list li:hover { color: var(--button-color); }
 
-@font-face {
-    font-family: 'Benzin';
-    src: url('fonts/Benzin-ExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 16px;
-}
-
-body {
-    margin: 0;
-    min-height: 100dvh;
-    font-family: 'Benzin', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    padding:
-        env(safe-area-inset-top)
-        0
-        env(safe-area-inset-bottom)
-        0;
-}
-
-.desktop-warning {
-    display: none;
-}
-
-.app-content {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    min-height: 100dvh;
-
-    padding: 16px;
-}
-
-.app-card {
-    width: 100%;
-
-    background-color: var(--card-bg);
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    padding: 18px;
-
-    font-size: 15px;
-
-    line-height: 1.45;
-}
-
-@media screen and (max-width: 359px) {
-
-    .app-content {
-        padding: 12px;
-    }
-
-    .app-card {
-        padding: 14px;
-        border-radius: 16px;
-        font-size: 14px;
-    }
-
-}
-
-@media screen and (min-width: 768px) {
-
-    body {
-        padding: 24px;
-    }
-
-    .app-content {
-        max-width: 500px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .app-card {
-        padding: 20px;
-    }
-
-}
+        /* Админ-панель (Таблица) */
+        .admin-panel { border: 2px dashed var(--button-color); margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+        th, td { padding: 8px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background: #f0f0f0; }
+        input, select, textarea { width: 100%; padding: 6px; margin: 4px 0; box-sizing: border-box; font-size: 13px; }
+        .admin-actions button { padding: 4px 8px; margin-right: 2px; font-size: 11px; }
