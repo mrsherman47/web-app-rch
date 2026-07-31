@@ -2,6 +2,11 @@ function Home({ onNavigate }) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
+            <div className="desktop-warning">
+                <div className="w1">Пожалуйста, откройте этот сайт через нашего телеграм-бота</div>
+                <div className="w2">Please open this site from our telegram bot</div>
+            </div>
+            
             {/* Шапка профиля */}
             <div style={styles.headerContainer}>
                 <div style={styles.leftSide}>
@@ -25,6 +30,22 @@ function Home({ onNavigate }) {
                     <div style={styles.bar}></div>
                     <div style={styles.bar}></div>
                 </button>
+            </div>
+
+            <div style={styles.heroBanner}>
+                <div style={styles.heroTopContent}>
+                    <div style={styles.heroSubTop}>rec.church · minsk</div>
+                    <h1 style={styles.heroTitle}>
+                        Собрания в церкви<br />
+                        “Примирение”
+                    </h1>
+                </div>
+
+                <div style={styles.heroBottomContent}>
+                    <p style={styles.heroDescription}>
+                        Примирение - интернациональная церковь в Минске. Здесь вы можете узнать о воскресных собраниях, ближайших событиях и проповедях.
+                    </p>
+                </div>
             </div>
 
             {/* Блок навигации */}
@@ -196,8 +217,60 @@ const styles = {
     bar: {
         width: '30px',
         height: '6px',
-        backgroundColor: '#2481cc',
+        backgroundColor: '#3390EC',
         borderRadius: '5px',
+    },
+
+    heroBanner: {
+        position: 'relative',
+        width: '100%',
+        minHeight: '380px',
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url("src/media/app_media/2111.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: '24px',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between', // Разносит верхний и нижний блок по краям
+        padding: '20px',
+    },
+
+    heroBottomContent: {
+        position: 'relative',
+        zIndex: 2,
+        color: '#ffffff',
+    },
+
+    heroTopContent: {
+        position: 'relative',
+        zIndex: 2,
+        color: '#ffffff',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '8px',
+    },
+
+    heroSubTop: {
+        fontSize: '13px',
+        opacity: 0.8,
+        letterSpacing: '0.5px',
+        textAlign: 'center', // 1-я строка по центру
+    },
+
+    heroTitle: {
+        fontSize: '24px',
+        fontWeight: '800',
+        lineHeight: '1.2',
+        margin: 0,
+        textAlign: 'left', // 2-я строка слева
+    },
+
+    heroDescription: {
+        fontSize: '14px',
+        lineHeight: '1.4',
+        margin: 0,
+        opacity: 0.9,
     },
 
     navCard: {
