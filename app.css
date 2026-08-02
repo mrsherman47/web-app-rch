@@ -82,6 +82,10 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
 
+    /* Выравниваем мобильный контейнер по центру экрана, если открыли с ПК */
+    display: flex;
+    justify-content: center;
+
     padding:
         env(safe-area-inset-top)
         0
@@ -97,6 +101,13 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    
+    /* 1. Задаем максимальную ширину как у мобильного телефона */
+    max-width: 480px; 
+    
+    /* 2. Центрируем контейнер */
+    margin: 0 auto; 
+    
     min-height: 100dvh;
     padding: 16px;
 }
@@ -129,7 +140,7 @@ body {
 }
 
 /* На экранах от 768px и шире (компьютеры) показываем заглушку */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
     .desktop-warning {
         display: flex;
         flex-direction: column;
