@@ -6,8 +6,10 @@
 
     <title>REC CHURCH</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- React с выводом подробных ошибок для разработки -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="stylesheet" href="app.css">
@@ -16,9 +18,16 @@
 <body>
     <div id="root" class="app-content"></div>
 
+    <!-- ВСЕ страницы должны быть подключены ДО App.jsx -->
     <script type="text/babel" src="src/pages/Home.jsx"></script>
     <script type="text/babel" src="src/pages/About.jsx"></script>
+    <script type="text/babel" src="src/pages/Events.jsx"></script>
+    <script type="text/babel" src="src/pages/Communication.jsx"></script>
+    <script type="text/babel" src="src/pages/Ministries.jsx"></script>
+    <script type="text/babel" src="src/pages/Team.jsx"></script>
+    <script type="text/babel" src="src/pages/Baptism.jsx"></script>
 
+    <!-- Главный файл роутинга идет Самым ПОСЛЕДНИМ -->
     <script type="text/babel" src="src/App.jsx"></script>
 </body>
 </html>
