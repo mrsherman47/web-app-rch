@@ -1,4 +1,4 @@
-function Home({ onNavigate }) {
+function Community({ onNavigate }) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>    
             {/* Шапка профиля */}

@@ -1,4 +1,4 @@
-function Home({ onNavigate }) {
+function Ministries({ onNavigate }) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>    
             {/* Шапка профиля */}
