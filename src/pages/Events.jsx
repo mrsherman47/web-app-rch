@@ -1,10 +1,6 @@
 // Укажите IP вашего сервера VDSina
 const API_URL = 'http://89.124.103.216:5000';
 
-// ---------------------------------------------------------------------
-// 1. ГОТОВЫЕ ШАБЛОНЫ МЕРОПРИЯТИЙ
-// Вы можете добавлять сюда любые новые типовые события и менять ссылки!
-// ---------------------------------------------------------------------
 const EVENT_TEMPLATES = [
     {
         id: 'home_group',
@@ -14,13 +10,13 @@ const EVENT_TEMPLATES = [
     },
     {
         id: 'sunday_service',
-        title: 'ВОСКРЕСНОЕ СОБРАНИЕ',
+        title: 'Воскресное собрание',
         link: 'https://t.me/church_channel',
         defaultLocation: 'Главный зал'
     },
     {
         id: 'prayer',
-        title: 'МОЛИТВЕННОЕ СЛУЖЕНИЕ',
+        title: 'Молитвенное служение',
         link: 'https://t.me/church_chat',
         defaultLocation: 'Малый зал'
     },
@@ -31,8 +27,14 @@ const EVENT_TEMPLATES = [
         defaultLocation: 'Кафе'
     },
     {
+        id: 'time_code',
+        title: 'Time code',
+        link: 'https://',
+        defaultLocation: 'Зал \"STUDIO\"'
+    },
+    {
         id: 'custom',
-        title: '✨ Другое (Ввести вручную)',
+        title: 'Другое (Ввести вручную)',
         link: '#',
         defaultLocation: ''
     }
@@ -50,11 +52,11 @@ const EventList = ({ events }) => {
                     <div style={eventsStyles.eventMainInfo}>
                         <span style={eventsStyles.eventTitle}>{event.title}</span>
                         <span style={eventsStyles.eventDatetime}>
-                            📅 {event.date} • ⏰ {event.time}
+                            {event.date} • {event.time}
                         </span>
                         {event.location && (
                             <span style={eventsStyles.eventLocation}>
-                                📍 {event.location}
+                                {event.location}
                             </span>
                         )}
                     </div>
@@ -275,10 +277,10 @@ function Events({ onNavigate }) {
                     </div>
                 ) : (
                     <>
-                        <h2 style={eventsStyles.sectionTitle}>РАСПИСАНИЕ НЕДЕЛИ</h2>
+                        <h2 style={eventsStyles.sectionTitle}>Расписание недели</h2>
                         <EventList events={data.week} />
 
-                        <h2 style={{ ...eventsStyles.sectionTitle, marginTop: '30px' }}>РАСПИСАНИЕ МЕСЯЦА</h2>
+                        <h2 style={{ ...eventsStyles.sectionTitle, marginTop: '30px' }}>Расписание месяца</h2>
                         <EventList events={data.month} />
                     </>
                 )}
@@ -323,7 +325,7 @@ function Events({ onNavigate }) {
                             </button>
                         </form>
                     ) : (
-                        /* Панель создания событии из шаблонов */
+                        /* Панель создания события из шаблонов */
                         <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                                 <h3 style={eventsStyles.adminTitle}>➕ Добавить из шаблона</h3>
@@ -407,7 +409,7 @@ function Events({ onNavigate }) {
                                 </button>
                             </div>
 
-                            <h3 style={{ ...eventsStyles.adminTitle, marginTop: '20px' }}>📋 Текущие события</h3>
+                            <h3 style={{ ...eventsStyles.adminTitle, marginTop: '20px' }}>Текущие события</h3>
                             <div style={eventsStyles.adminList}>
                                 {allEvents.length === 0 ? (
                                     <div style={eventsStyles.adminEmpty}>Событий нет</div>
@@ -417,7 +419,7 @@ function Events({ onNavigate }) {
                                             <div style={eventsStyles.adminItemInfo}>
                                                 <strong>{event.title}</strong>
                                                 <div>{event.date} • {event.time} ({event.section === 'week' ? 'Неделя' : 'Месяц'})</div>
-                                                {event.location && <div style={{ color: '#70778A' }}>📍 {event.location}</div>}
+                                                {event.location && <div style={{ color: '#70778A' }}>{event.location}</div>}
                                             </div>
                                             <button
                                                 style={eventsStyles.adminDeleteBtn}
@@ -433,6 +435,104 @@ function Events({ onNavigate }) {
                     )}
                 </div>
             )}
+
+            {/* НИЖНИЙ БЛОК НАВИГАЦИИ С ОДНОЙ РАЗДЕЛИТЕЛЬНОЙ ПОЛОСОЙ */}
+            <div style={eventsStyles.navCard}>
+                <div style={eventsStyles.leftSideNav} onClick={() => onNavigate('home')}>
+                    <img
+                        src="src/media/black-logo.png"
+                        alt="REC CHURCH"
+                        style={eventsStyles.logoImg}
+                    />
+                    <div style={eventsStyles.titleBlock}>
+                        <span style={eventsStyles.mainTitle}>ПРИМИРЕНИЕ</span>
+                        <span style={eventsStyles.subTitle}>ЦЕРКОВЬ</span>
+                    </div>
+                </div>
+
+                <div style={eventsStyles.divider}></div>
+
+                <table style={eventsStyles.table}>
+                    <tbody>
+                        <tr>
+                            <td style={eventsStyles.navtextInt}>
+                                Интернациональная церковь
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.navText}>
+                                Навигация
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.tableCell}>
+                                <a
+                                    href="#about"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
+                                    style={eventsStyles.link}
+                                >
+                                    О церкви
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.tableCell}>
+                                <a
+                                    href="#events"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('events'); }}
+                                    style={eventsStyles.link}
+                                >
+                                    События
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.tableCell}>
+                                <a
+                                    href="#communication"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('communication'); }}
+                                    style={eventsStyles.link}
+                                >
+                                    Общение
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.tableCell}>
+                                <a
+                                    href="#ministries"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('ministries'); }}
+                                    style={eventsStyles.link}
+                                >
+                                    Наши служения
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.tableCell}>
+                                <a
+                                    href="#team"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('team'); }}
+                                    style={eventsStyles.link}
+                                >
+                                    Команда
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={eventsStyles.tableCellLast}>
+                                <a
+                                    href="#baptism"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('baptism'); }}
+                                    style={eventsStyles.link}
+                                >
+                                    Крещение
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
@@ -614,7 +714,69 @@ const eventsStyles = {
         fontSize: '12px',
         color: '#70778A',
         fontStyle: 'italic'
-    }
+    },
+    // Стили для нижнего блока навигации
+    navCard: {
+        background: '#ffffff',
+        border: '1.5px solid #d0d7de',
+        borderRadius: '25px',
+        padding: '20px',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.02)',
+    },
+    leftSideNav: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        cursor: 'pointer'
+    },
+    logoImg: {
+        height: '36px',
+        objectFit: 'contain',
+    },
+    titleBlock: {
+        display: 'flex',
+        flexDirection: 'column',
+        lineHeight: '1.1',
+    },
+    mainTitle: {
+        fontWeight: '700',
+        fontSize: '16px',
+        color: '#000000',
+    },
+    subTitle: {
+        fontWeight: '500',
+        fontSize: '16px',
+        color: '#000000',
+    },
+    divider: {
+        width: '100%',
+        height: '1px',
+        backgroundColor: '#e1e4e8',
+        margin: '16px 0',
+    },
+    table: {
+        width: '100%',
+        borderCollapse: 'collapse',
+    },
+    navText: {
+        padding: '8px 0',
+        color: '#70778A',
+        fontWeight: '600',
+        fontSize: '15px',
+    },
+    tableCell: {
+        padding: '8px 0',
+    },
+    tableCellLast: {
+        padding: '8px 0 0 0',
+    },
+    link: {
+        color: '#70778A',
+        textDecoration: 'none',
+        fontWeight: '600',
+        fontSize: '16px',
+        display: 'block',
+    },
 };
 
 const eventsHeaderStyles = {
@@ -677,7 +839,75 @@ const eventsHeaderStyles = {
         width: '200px',
         background: '#ffffff',
         border: '1.5px solid #d0d7de',
-        borderRadius: '16px',
+        borderRadius: '16px',navCard: {
+        background: '#ffffff',
+        border: '1.5px solid #d0d7de',
+        borderRadius: '25px',
+        padding: '20px',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.02)',
+    },
+    leftSideNav: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        cursor: 'pointer'
+    },
+    logoImg: {
+        height: '36px',
+        objectFit: 'contain',
+    },
+    titleBlock: {
+        display: 'flex',
+        flexDirection: 'column',
+        lineHeight: '1.1',
+    },
+    mainTitle: {
+        fontWeight: '700',
+        fontSize: '16px',
+        color: '#000000',
+    },
+    subTitle: {
+        fontWeight: '500',
+        fontSize: '16px',
+        color: '#000000',
+    },
+    divider: {
+        width: '100%',
+        height: '1px',
+        backgroundColor: '#e1e4e8',
+        margin: '16px 0',
+    },
+    table: {
+        width: '100%',
+        borderCollapse: 'collapse',
+    },
+    navtextInt: {
+        padding: '10px 0 10px',
+        color: '#70778A',
+        fontWeight: '600',
+        fontSize: '15px',
+        display: 'block',
+    },
+    navText: {
+        padding: '10px 0 15px',
+        color: '#1C1E26',
+        fontWeight: '600',
+        fontSize: '16px',
+        display: 'block',
+    },
+    tableCell: {
+        padding: '8px 0',
+    },
+    tableCellLast: {
+        padding: '8px 0 0 0',
+    },
+    link: {
+        color: '#70778A',
+        textDecoration: 'none',
+        fontWeight: '600',
+        fontSize: '16px',
+        display: 'block',
+    },
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
         padding: '8px 0',
         zIndex: 100
@@ -697,4 +927,4 @@ const eventsHeaderStyles = {
         cursor: 'pointer',
         borderTop: '1px solid #F3F4F8'
     }
-};
+};  

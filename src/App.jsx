@@ -1,14 +1,11 @@
 function App() {
-    // Текущая страница по умолчанию
     const [currentPage, setCurrentPage] = React.useState('home');
 
-    // Функция переключения
     const handleNavigate = (pageKey) => {
         setCurrentPage(pageKey);
-        window.scrollTo(0, 0); // Сброс прокрутки наверх
+        window.scrollTo(0, 0); 
     };
 
-    // Отрисовка нужной страницы
     const renderPage = () => {
         switch (currentPage) {
             case 'home':
@@ -18,7 +15,7 @@ function App() {
             case 'events':
                 return <Events onNavigate={handleNavigate} />;
             case 'communication':
-                return <Communication onNavigate={handleNavigate} />;
+                return <Community onNavigate={handleNavigate} />;
             case 'ministries':
                 return <Ministries onNavigate={handleNavigate} />;
             case 'team':
@@ -37,6 +34,5 @@ function App() {
     );
 }
 
-// Рендеринг в DOM
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);

@@ -1,44 +1,67 @@
 function Ministries({ onNavigate }) {
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>    
-            {/* Шапка профиля */}
-            <div style={styles.headerContainer}>
-                <div style={styles.leftSide}>
-                    <img
-                        src="src/media/black-logo.png"
-                        alt="REC CHURCH"
-                        style={styles.logoImg}
-                    />
-                    <div style={styles.titleBlock}>
-                        <span style={styles.mainTitle}>ПРИМИРЕНИЕ</span>
-                        <span style={styles.subTitle}>ЦЕРКОВЬ</span>
-                    </div>
-                </div>
+            {/* Выпадающая шапка (тулбар) с меню */}
+            <div style={baptismHeaderStyles.headerWrapper}>  
+                <div style={baptismHeaderStyles.headerContainer}>  
+                    <div style={baptismHeaderStyles.leftSide} onClick={() => onNavigate('home')}>  
+                        <img  
+                            src="src/media/black-logo.png"  
+                            alt="REC CHURCH"  
+                            style={baptismHeaderStyles.logoImg}  
+                        />  
+                        <div style={baptismHeaderStyles.titleBlock}>  
+                            <span style={baptismHeaderStyles.mainTitle}>ПРИМИРЕНИЕ</span>  
+                            <span style={baptismHeaderStyles.subTitle}>ЦЕРКОВЬ</span>  
+                        </div>  
+                    </div>  
 
-                <button
-                    onClick={() => alert('Меню')}
-                    style={styles.menuButton}
-                    aria-label="Меню"
-                >
-                    <div style={styles.bar}></div>
-                    <div style={styles.bar}></div>
-                    <div style={styles.bar}></div>
-                </button>
+                    <button  
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}  
+                        style={baptismHeaderStyles.menuButton}  
+                        aria-label="Меню"  
+                    >  
+                        <div style={baptismHeaderStyles.bar}></div>  
+                        <div style={baptismHeaderStyles.bar}></div>  
+                        <div style={baptismHeaderStyles.bar}></div>  
+                    </button>  
+                </div>  
+
+                {isMenuOpen && (  
+                    <div style={baptismHeaderStyles.dropdownMenu}>  
+                        <div style={baptismHeaderStyles.dropdownHeader}>Навигация</div>  
+                        {[  
+                            { key: 'min', label: 'О церкви' },  
+                            { key: 'events', label: 'События' },  
+                            { key: 'communication', label: 'Общение' },  
+                            { key: 'ministries', label: 'Наши служения' },  
+                            { key: 'team', label: 'Команда' },  
+                            { key: 'baptism', label: 'Крещение' }  
+                        ].map((item) => (  
+                            <div  
+                                key={item.key}  
+                                style={baptismHeaderStyles.dropdownItem}  
+                                onClick={() => {  
+                                    setIsMenuOpen(false);  
+                                    onNavigate(item.key);  
+                                }}  
+                            >  
+                                {item.label}  
+                            </div>  
+                        ))}  
+                    </div>  
+                )}  
             </div>
 
             <div style={styles.heroBanner}>
                 <div style={styles.heroTopContent}>
                     <div style={styles.heroSubTop}>rec.church · minsk</div>
                     <h1 style={styles.heroTitle}>
-                        Собрания в церкви<br />
+                        Собрания в церкви<br /> 
                         “Примирение”
                     </h1>
-                </div>
-
-                <div style={styles.heroBottomContent}>
-                    <p style={styles.heroDescription}>
-                        Примирение - интернациональная церковь в Минске. Здесь вы можете узнать о воскресных собраниях, ближайших событиях и проповедях.
-                    </p>
                 </div>
             </div>
 
@@ -65,15 +88,15 @@ function Ministries({ onNavigate }) {
                             </td>
                         </tr>
                         <tr>
-                            <td styles={styles.navText}>
+                            <td style={styles.navText}>
                                 Навигация
                             </td>
                         </tr>
                         <tr>
                             <td style={styles.tableCell}>
                                 <a
-                                    href="#about"
-                                    onClick={(e) => { e.preventDefault(); onNavigate('about'); }}
+                                    href="#min"
+                                    onClick={(e) => { e.preventDefault(); onNavigate('min'); }}
                                     style={styles.link}
                                 >
                                     О церкви
@@ -142,6 +165,90 @@ function Ministries({ onNavigate }) {
         </div>
     );
 }
+
+const baptismHeaderStyles = {  
+    headerWrapper: {  
+        position: 'relative',  
+        zIndex: 100,  
+    },  
+    headerContainer: {  
+        display: 'flex',  
+        justifyContent: 'space-between',  
+        alignItems: 'center',  
+        background: '#ffffff',  
+        border: '1.5px solid #d0d7de',  
+        borderRadius: '25px',  
+        padding: '10px 16px',  
+        boxShadow: '0 2px 5px rgba(0,0,0,0.02)',
+    },  
+    leftSide: {  
+        display: 'flex',  
+        alignItems: 'center',  
+        gap: '12px',  
+        cursor: 'pointer'  
+    },  
+    logoImg: {  
+        height: '36px',  
+        objectFit: 'contain',  
+    },  
+    titleBlock: {  
+        display: 'flex',  
+        flexDirection: 'column',  
+        lineHeight: '1.1',  
+    },  
+    mainTitle: {  
+        fontWeight: '700',  
+        fontSize: '16px',  
+        color: '#000000',  
+    },  
+    subTitle: {  
+        fontWeight: '500',  
+        fontSize: '16px',  
+        color: '#000000',  
+    },  
+    menuButton: {  
+        background: 'none',  
+        border: 'none',  
+        cursor: 'pointer',  
+        display: 'flex',  
+        flexDirection: 'column',  
+        gap: '4px',  
+        padding: '6px',  
+    },  
+    bar: {  
+        width: '30px',  
+        height: '6px',  
+        backgroundColor: '#3390EC',  
+        borderRadius: '5px',  
+    },  
+    dropdownMenu: {  
+        position: 'absolute',  
+        top: '60px',  
+        right: '0',  
+        width: '200px',  
+        background: '#ffffff',  
+        border: '1.5px solid #d0d7de',  
+        borderRadius: '16px',  
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',  
+        padding: '8px 0',  
+        zIndex: 100  
+    },  
+    dropdownHeader: {  
+        padding: '6px 16px',  
+        fontSize: '11px',  
+        fontWeight: '700',  
+        color: '#70778A',  
+        textTransform: 'uppercase'  
+    },  
+    dropdownItem: {  
+        padding: '10px 16px',  
+        fontSize: '14px',  
+        fontWeight: '500',  
+        color: '#1C1E26',  
+        cursor: 'pointer',  
+        borderTop: '1px solid #F3F4F8'  
+    }  
+};
 
 const styles = {
     headerContainer: {
@@ -226,7 +333,7 @@ const styles = {
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between', // Разносит верхний и нижний блок по краям
+        justifyContent: 'space-between',
         padding: '20px',
     },
 
@@ -249,7 +356,7 @@ const styles = {
         fontSize: '13px',
         opacity: 0.8,
         letterSpacing: '0.5px',
-        textAlign: 'center', // 1-я строка по центру
+        textAlign: 'center',
     },
 
     heroTitle: {
@@ -257,7 +364,7 @@ const styles = {
         fontWeight: '800',
         lineHeight: '1.2',
         margin: 0,
-        textAlign: 'left', // 2-я строка слева
+        textAlign: 'left',
     },
 
     heroDescription: {
@@ -288,7 +395,7 @@ const styles = {
     },
 
     navText: {
-        padding: '30x 0 15px',
+        padding: '15px 0 10px',
         color: '#1C1E26',
         fontWeight: '600',
         fontSize: '16px',
@@ -297,7 +404,6 @@ const styles = {
 
     tableCell: {
         padding: '3px 0',
-        //borderBottom: '1px solid #eee',
     },
 
     tableCellLast: {
@@ -322,5 +428,5 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-    <Home onNavigate={navigate} />
+    <Ministries onNavigate={navigate} />
 );
