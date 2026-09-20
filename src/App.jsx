@@ -1,9 +1,12 @@
 function App() {
     const [currentPage, setCurrentPage] = React.useState('home');
+    const [pageParams, setPageParams] = React.useState({});
 
-    const handleNavigate = (pageKey) => {
+    // onNavigate(pageKey, params?) — второй аргумент необязательный
+    const handleNavigate = (pageKey, params = {}) => {
         setCurrentPage(pageKey);
-        window.scrollTo(0, 0); 
+        setPageParams(params);
+        window.scrollTo(0, 0);
     };
 
     const renderPage = () => {
@@ -14,6 +17,13 @@ function App() {
                 return <About onNavigate={handleNavigate} />;
             case 'events':
                 return <Events onNavigate={handleNavigate} />;
+            case 'event-details':
+                return (
+                    <EventDetails
+                        eventId={pageParams.eventId}
+                        onNavigate={handleNavigate}
+                    />
+                );
             case 'communication':
                 return <Community onNavigate={handleNavigate} />;
             case 'ministries':

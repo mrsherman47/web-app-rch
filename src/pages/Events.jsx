@@ -61,10 +61,12 @@ const EventList = ({ events }) => {
                         )}
                     </div>
                     {event.link && event.link !== '#' && (
-                        <a 
-                            href={event.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
+                        <a
+                            href={`#/event/${event.id}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                onNavigate('event-details', { eventId: event.id });
+                            }}
                             style={eventsStyles.eventLink}
                         >
                             Подробнее →
